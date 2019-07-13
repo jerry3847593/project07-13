@@ -1,0 +1,10 @@
+{% extends 'job/base.html' %}
+
+{% block content %}
+    <h2>수정할 내용을 수정해주세요!</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">수정</button>
+    </form>
+{% endblock %}

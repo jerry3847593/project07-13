@@ -1,0 +1,10 @@
+{% extends 'job/base.html' %}
+
+{% block content %}
+    <h2>공부할 사람을 모아보자!</h2>
+    <form method = "POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">저장</button>
+    </form>
+{% endblock %}

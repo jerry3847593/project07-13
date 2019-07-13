@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="kr">
+    {% extends 'job/base.html' %}
+
+    {% block content %}
+        <h2>같이 취업하자!</h2>
+        <div>
+            <h3>{{post.title}}</h3>
+            <p>{{post.text}}</p>
+            <p>{{post.created_date}}</p> 
+            <a href="{% url 'edit' post.id %}">수정</a>
+            <a href="{% url 'delete' post.id %}">삭제</a>
+        </div>
+
+        <br>
+
+        <p>댓글{{post.comments.count}}개</p>
+        
+        <div class ="form-group">
+            <h4>댓글 작성</h4>
+            <form method="POST" action="{% url 'add_comment' post.id %}">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit" class="save btn btn-default">작성</button>
+            </form>
+
+        </div>
+        {% for comment in post.comments.all %}
+        
+        <div>
+            <div>{{comment.created_date}}</div>
+            {{comment.text|linebreaks}}
+            <a href="{% url 'comment_delete' comment_id=comment.id %}" onclick="return confirm('정말로 삭제하시겠습니까?')" >댓글 삭제</a>
+        </div>
+        {% endfor %}
+
+    {% endblock %}
+    
+</html>

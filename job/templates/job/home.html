@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang='kr'>
+    {% extends 'job/base.html' %}
+
+    {% block content %}
+    <h2>스터디 모집합니다!</h2>
+        {% for post in posts.all %}
+            <div>
+                <h3><a href="{% url 'detail' post.id %}">{{post.title}}</a></h3>
+            </div>
+        {% endfor %}
+    {% endblock %}
+    
+</html>
